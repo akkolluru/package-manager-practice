@@ -12,15 +12,21 @@ pipeline {
 
         stage('Install Dependencies') {
             steps {
-                echo 'Installing dependencies using pip3...'
-                sh 'pip3 install -r requirements.txt'
+                sh '''
+                    python3 -m venv venv
+                    . venv/bin/activate
+                    pip install --upgrade pip
+                    pip install -r requirements.txt
+                '''
             }
         }
 
         stage('Run Tests') {
             steps {
-                echo 'Running pytest...'
-                sh 'python3 -m pytest --maxfail=1 --disable-warnings -q'
+                sh '''
+                    . venv/bin/activate
+                    python -m pytest --maxfail=1 --disable-warnings -q
+                '''
             }
         }
 
