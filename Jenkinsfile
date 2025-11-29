@@ -20,7 +20,7 @@ pipeline {
         stage('Run Tests') {
             steps {
                 echo 'Running pytest...'
-                sh 'pytest --maxfail=1 --disable-warnings -q'
+                sh 'python3 -m pytest --maxfail=1 --disable-warnings -q'
             }
         }
 
