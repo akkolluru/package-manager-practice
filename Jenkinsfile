@@ -15,8 +15,8 @@ pipeline {
                 sh '''
                     python3 -m venv venv
                     . venv/bin/activate
-                    pip install --upgrade pip
-                    pip install -r requirements.txt
+                    pip3 install --upgrade pip
+                    pip3 install -r requirements.txt
                 '''
             }
         }
@@ -25,7 +25,8 @@ pipeline {
             steps {
                 sh '''
                     . venv/bin/activate
-                    python -m pytest --maxfail=1 --disable-warnings -q
+                    pip3 install pytest
+                    python3 -m pytest --maxfail=1 --disable-warnings -q
                 '''
             }
         }
